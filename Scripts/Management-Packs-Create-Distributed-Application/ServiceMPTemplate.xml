@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="utf-8"?><ManagementPack ContentReadable="true" SchemaVersion="2.0" OriginalSchemaVersion="1.1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <Manifest>
+    <Identity>
+      <ID>##XMLID##</ID>
+      <Version>1.0.0.0</Version>
+    </Identity>
+    <Name>##XMLNAME##</Name>
+    <References>
+      <Reference Alias="MicrosoftSystemCenterServiceDesignerLibrary">
+        <ID>Microsoft.SystemCenter.ServiceDesigner.Library</ID>
+        <Version>7.0.8437.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="MicrosoftWindowsLibrary">
+        <ID>Microsoft.Windows.Library</ID>
+        <Version>7.5.8501.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="MicrosoftSystemCenterInstanceGroupLibrary">
+        <ID>Microsoft.SystemCenter.InstanceGroup.Library</ID>
+        <Version>7.5.8501.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="SystemLibrary">
+        <ID>System.Library</ID>
+        <Version>7.5.8501.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="SystemCenter">
+        <ID>Microsoft.SystemCenter.Library</ID>
+        <Version>7.0.8437.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="SystemHealthLibrary">
+        <ID>System.Health.Library</ID>
+        <Version>7.0.8437.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="Image">
+        <ID>System.Image.Library</ID>
+        <Version>7.5.8501.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+    </References>
+  </Manifest>
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+        <ClassType ID="Service_##GUID##" Accessibility="Public" Abstract="false" Base="MicrosoftSystemCenterServiceDesignerLibrary!Microsoft.SystemCenter.ServiceDesigner.GenericService" Hosted="false" Singleton="true" Extension="false" />
+        <ClassType ID="Service_##GUID##_Functional.Group" Accessibility="Public" Abstract="false" Base="MicrosoftSystemCenterInstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" Extension="false" />
+        <ClassType ID="Service_##GUID##_Components.Group" Accessibility="Public" Abstract="false" Base="MicrosoftSystemCenterInstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" Extension="false" />
+        <ClassType ID="Service_##GUID##_Infrastructure.Group" Accessibility="Public" Abstract="false" Base="MicrosoftSystemCenterInstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroup" Hosted="false" Singleton="true" Extension="false" />
+        <ClassType ID="SC_Functional_Service_##GUID##" Accessibility="Public" Abstract="false" Base="MicrosoftSystemCenterServiceDesignerLibrary!Microsoft.SystemCenter.ServiceDesigner.ServiceComponentGroup" Hosted="false" Singleton="true" Extension="false" />
+        <ClassType ID="SC_Components_Service_##GUID##" Accessibility="Public" Abstract="false" Base="MicrosoftSystemCenterServiceDesignerLibrary!Microsoft.SystemCenter.ServiceDesigner.ServiceComponentGroup" Hosted="false" Singleton="true" Extension="false" />
+        <ClassType ID="SC_Infrastructure_Service_##GUID##" Accessibility="Public" Abstract="false" Base="MicrosoftSystemCenterServiceDesignerLibrary!Microsoft.SystemCenter.ServiceDesigner.ServiceComponentGroup" Hosted="false" Singleton="true" Extension="false" />
+      </ClassTypes>
+      <RelationshipTypes>
+        <RelationshipType ID="SCIMembership_##GUID##_Functional_Group" Accessibility="Public" Abstract="false" Base="SystemLibrary!System.Containment">
+          <Source ID="source" MinCardinality="0" MaxCardinality="2147483647" Type="SC_Functional_Service_##GUID##" />
+          <Target ID="target" MinCardinality="0" MaxCardinality="2147483647" Type="SystemLibrary!System.Entity" />
+        </RelationshipType>
+        <RelationshipType ID="SCIMembership_##GUID##_Functional_To_Service" Accessibility="Public" Abstract="false" Base="SystemLibrary!System.Containment">
+          <Source ID="source" MinCardinality="0" MaxCardinality="2147483647" Type="Service_##GUID##" />
+          <Target ID="target" MinCardinality="0" MaxCardinality="2147483647" Type="SC_Functional_Service_##GUID##" />
+        </RelationshipType>
+        <RelationshipType ID="SCIMembership_##GUID##_Components_Group" Accessibility="Public" Abstract="false" Base="SystemLibrary!System.Containment">
+          <Source ID="source" MinCardinality="0" MaxCardinality="2147483647" Type="SC_Components_Service_##GUID##" />
+          <Target ID="target" MinCardinality="0" MaxCardinality="2147483647" Type="SystemLibrary!System.Entity" />
+        </RelationshipType>
+        <RelationshipType ID="SCIMembership_##GUID##_Components_To_Service" Accessibility="Public" Abstract="false" Base="SystemLibrary!System.Containment">
+          <Source ID="source" MinCardinality="0" MaxCardinality="2147483647" Type="Service_##GUID##" />
+          <Target ID="target" MinCardinality="0" MaxCardinality="2147483647" Type="SC_Components_Service_##GUID##" />
+        </RelationshipType>
+        <RelationshipType ID="SCIMembership_##GUID##_Infrastructure_Group" Accessibility="Public" Abstract="false" Base="SystemLibrary!System.Containment">
+          <Source ID="source" MinCardinality="0" MaxCardinality="2147483647" Type="SC_Infrastructure_Service_##GUID##" />
+          <Target ID="target" MinCardinality="0" MaxCardinality="2147483647" Type="SystemLibrary!System.Entity" />
+        </RelationshipType>
+        <RelationshipType ID="SCIMembership_##GUID##_Infrastructure_To_Service" Accessibility="Public" Abstract="false" Base="SystemLibrary!System.Containment">
+          <Source ID="source" MinCardinality="0" MaxCardinality="2147483647" Type="Service_##GUID##" />
+          <Target ID="target" MinCardinality="0" MaxCardinality="2147483647" Type="SC_Infrastructure_Service_##GUID##" />
+        </RelationshipType>
+      </RelationshipTypes>
+    </EntityTypes>
+  </TypeDefinitions>
+  <Monitoring>
+    <Discoveries>
+      <Discovery ID="Service_##GUID##_Functional.Group.DiscoveryRule" Enabled="true" Target="Service_##GUID##_Functional.Group" ConfirmDelivery="false" Remotable="true" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryRelationship TypeID="MicrosoftSystemCenterInstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroupContainsEntities" />
+        </DiscoveryTypes>
+        <DataSource ID="GroupPopulationDataSource" TypeID="SystemCenter!Microsoft.SystemCenter.GroupPopulator">
+          <RuleId>$MPElement$</RuleId>
+          <GroupInstanceId>$MPElement[Name="Service_##GUID##_Functional.Group"]$</GroupInstanceId>
+          <MembershipRules>
+            <MembershipRule Comment="EMPTY_RULE_8eadaced-59c8-4ebc-a4e4-b8428a374442">
+              <MonitoringClass>$MPElement[Name="SystemLibrary!System.Entity"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="MicrosoftSystemCenterInstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <Value>True</Value>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value>False</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </MembershipRule>
+          </MembershipRules>
+        </DataSource>
+      </Discovery>
+      <Discovery ID="Service_##GUID##_Components.Group.DiscoveryRule" Enabled="true" Target="Service_##GUID##_Components.Group" ConfirmDelivery="false" Remotable="true" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryRelationship TypeID="MicrosoftSystemCenterInstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroupContainsEntities" />
+        </DiscoveryTypes>
+        <DataSource ID="GroupPopulationDataSource" TypeID="SystemCenter!Microsoft.SystemCenter.GroupPopulator">
+          <RuleId>$MPElement$</RuleId>
+          <GroupInstanceId>$MPElement[Name="Service_##GUID##_Components.Group"]$</GroupInstanceId>
+          <MembershipRules>
+            <MembershipRule Comment="EMPTY_RULE_8eadaced-59c8-4ebc-a4e4-b8428a374442">
+              <MonitoringClass>$MPElement[Name="SystemLibrary!System.Entity"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="MicrosoftSystemCenterInstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <Value>True</Value>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value>False</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </MembershipRule>
+          </MembershipRules>
+        </DataSource>
+      </Discovery>
+      <Discovery ID="Service_##GUID##_Infrastructure.Group.DiscoveryRule" Enabled="true" Target="Service_##GUID##_Infrastructure.Group" ConfirmDelivery="false" Remotable="true" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryRelationship TypeID="MicrosoftSystemCenterInstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroupContainsEntities" />
+        </DiscoveryTypes>
+        <DataSource ID="GroupPopulationDataSource" TypeID="SystemCenter!Microsoft.SystemCenter.GroupPopulator">
+          <RuleId>$MPElement$</RuleId>
+          <GroupInstanceId>$MPElement[Name="Service_##GUID##_Infrastructure.Group"]$</GroupInstanceId>
+          <MembershipRules>
+            <MembershipRule Comment="EMPTY_RULE_8eadaced-59c8-4ebc-a4e4-b8428a374442">
+              <MonitoringClass>$MPElement[Name="SystemLibrary!System.Entity"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="MicrosoftSystemCenterInstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <Value>True</Value>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value>False</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </MembershipRule>
+          </MembershipRules>
+        </DataSource>
+      </Discovery>
+      <Discovery ID="Service_##GUID##_SCPopulation" Enabled="true" Target="Service_##GUID##" ConfirmDelivery="false" Remotable="true" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes />
+        <DataSource ID="DS" TypeID="SystemCenter!Microsoft.SystemCenter.GroupPopulator">
+          <RuleId>$MPElement$</RuleId>
+          <GroupInstanceId>$Target/Id$</GroupInstanceId>
+          <MembershipRules>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="SC_Functional_Service_##GUID##"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="SCIMembership_##GUID##_Functional_To_Service"]$</RelationshipClass>
+            </MembershipRule>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="SC_Components_Service_##GUID##"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="SCIMembership_##GUID##_Components_To_Service"]$</RelationshipClass>
+            </MembershipRule>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="SC_Infrastructure_Service_##GUID##"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="SCIMembership_##GUID##_Infrastructure_To_Service"]$</RelationshipClass>
+            </MembershipRule>
+          </MembershipRules>
+        </DataSource>
+      </Discovery>
+    </Discoveries>
+    <Monitors>
+      <DependencyMonitor ID="Service_##GUID##_Functional.DependencyMonitor" Accessibility="Public" Enabled="true" Target="Service_##GUID##_Functional.Group" ParentMonitorID="SystemHealthLibrary!System.Health.AvailabilityState" Remotable="true" Priority="Normal" RelationshipType="MicrosoftSystemCenterInstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroupContainsEntities" MemberMonitor="SystemHealthLibrary!System.Health.AvailabilityState">
+        <Category>Custom</Category>
+        <Algorithm>WorstOf</Algorithm>
+        <MemberUnAvailable>Error</MemberUnAvailable>
+      </DependencyMonitor>
+      <DependencyMonitor ID="Service_##GUID##_Components.DependencyMonitor" Accessibility="Public" Enabled="true" Target="Service_##GUID##_Components.Group" ParentMonitorID="SystemHealthLibrary!System.Health.AvailabilityState" Remotable="true" Priority="Normal" RelationshipType="MicrosoftSystemCenterInstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroupContainsEntities" MemberMonitor="SystemHealthLibrary!System.Health.AvailabilityState">
+        <Category>Custom</Category>
+        <Algorithm>WorstOf</Algorithm>
+        <MemberUnAvailable>Error</MemberUnAvailable>
+      </DependencyMonitor>
+      <DependencyMonitor ID="Service_##GUID##_Infrastructure.DependencyMonitor" Accessibility="Public" Enabled="true" Target="Service_##GUID##_Infrastructure.Group" ParentMonitorID="SystemHealthLibrary!System.Health.AvailabilityState" Remotable="true" Priority="Normal" RelationshipType="MicrosoftSystemCenterInstanceGroupLibrary!Microsoft.SystemCenter.InstanceGroupContainsEntities" MemberMonitor="SystemHealthLibrary!System.Health.AvailabilityState">
+        <Category>Custom</Category>
+        <Algorithm>WorstOf</Algorithm>
+        <MemberUnAvailable>Error</MemberUnAvailable>
+      </DependencyMonitor>
+      <DependencyMonitor ID="SCIMembership_##GUID##_Functional_Group_Availability_HealthMonitor" Accessibility="Public" Enabled="true" Target="SC_Functional_Service_##GUID##" ParentMonitorID="SystemHealthLibrary!System.Health.AvailabilityState" Remotable="true" Priority="Normal" RelationshipType="SCIMembership_##GUID##_Functional_Group" MemberMonitor="SystemHealthLibrary!System.Health.AvailabilityState">
+        <Category>AvailabilityHealth</Category>
+        <Algorithm>WorstOf</Algorithm>
+      </DependencyMonitor>
+      <DependencyMonitor ID="SCIMembership_##GUID##_Functional_Group_Performance_HealthMonitor" Accessibility="Public" Enabled="true" Target="SC_Functional_Service_##GUID##" ParentMonitorID="SystemHealthLibrary!System.Health.PerformanceState" Remotable="true" Priority="Normal" RelationshipType="SCIMembership_##GUID##_Functional_Group" MemberMonitor="SystemHealthLibrary!System.Health.PerformanceState">
+        <Category>PerformanceHealth</Category>
+        <Algorithm>WorstOf</Algorithm>
+      </DependencyMonitor>
+      <DependencyMonitor ID="SCIMembership_##GUID##_Functional_Group_Configuration_HealthMonitor" Accessibility="Public" Enabled="true" Target="SC_Functional_Service_##GUID##" ParentMonitorID="SystemHealthLibrary!System.Health.ConfigurationState" Remotable="true" Priority="Normal" RelationshipType="SCIMembership_##GUID##_Functional_Group" MemberMonitor="SystemHealthLibrary!System.Health.ConfigurationState">
+        <Category>ConfigurationHealth</Category>
+        <Algorithm>WorstOf</Algorithm>
+      </DependencyMonitor>
+      <DependencyMonitor ID="SCIMembership_##GUID##_Functional_Group_Security_HealthMonitor" Accessibility="Public" Enabled="true" Target="SC_Functional_Service_##GUID##" ParentMonitorID="SystemHealthLibrary!System.Health.SecurityState" Remotable="true" Priority="Normal" RelationshipType="SCIMembership_##GUID##_Functional_Group" MemberMonitor="SystemHealthLibrary!System.Health.SecurityState">
+        <Category>SecurityHealth</Category>
+        <Algorithm>WorstOf</Algorithm>
+      </DependencyMonitor>
+      <DependencyMonitor ID="SCIMembership_##GUID##_Functional_To_Service_Availability_HealthMonitor" Accessibility="Public" Enabled="true" Target="Service_##GUID##" ParentMonitorID="SystemHealthLibrary!System.Health.AvailabilityState" Remotable="true" Priority="Normal" RelationshipType="SCIMembership_##GUID##_Functional_To_Service" MemberMonitor="SystemHealthLibrary!System.Health.AvailabilityState">
+        <Category>AvailabilityHealth</Category>
+        <Algorithm>WorstOf</Algorithm>
+      </DependencyMonitor>
+      <DependencyMonitor ID="SCIMembership_##GUID##_Components_Group_Availability_HealthMonitor" Accessibility="Public" Enabled="true" Target="SC_Components_Service_##GUID##" ParentMonitorID="SystemHealthLibrary!System.Health.AvailabilityState" Remotable="true" Priority="Normal" RelationshipType="SCIMembership_##GUID##_Components_Group" MemberMonitor="SystemHealthLibrary!System.Health.AvailabilityState">
+        <Category>AvailabilityHealth</Category>
+        <Algorithm>WorstOf</Algorithm>
+      </DependencyMonitor>
+      <DependencyMonitor ID="SCIMembership_##GUID##_Components_Group_Performance_HealthMonitor" Accessibility="Public" Enabled="true" Target="SC_Components_Service_##GUID##" ParentMonitorID="SystemHealthLibrary!System.Health.PerformanceState" Remotable="true" Priority="Normal" RelationshipType="SCIMembership_##GUID##_Components_Group" MemberMonitor="SystemHealthLibrary!System.Health.PerformanceState">
+        <Category>PerformanceHealth</Category>
+        <Algorithm>WorstOf</Algorithm>
+      </DependencyMonitor>
+      <DependencyMonitor ID="SCIMembership_##GUID##_Components_Group_Configuration_HealthMonitor" Accessibility="Public" Enabled="true" Target="SC_Components_Service_##GUID##" ParentMonitorID="SystemHealthLibrary!System.Health.ConfigurationState" Remotable="true" Priority="Normal" RelationshipType="SCIMembership_##GUID##_Components_Group" MemberMonitor="SystemHealthLibrary!System.Health.ConfigurationState">
+        <Category>ConfigurationHealth</Category>
+        <Algorithm>WorstOf</Algorithm>
+      </DependencyMonitor>
+      <DependencyMonitor ID="SCIMembership_##GUID##_Components_Group_Security_HealthMonitor" Accessibility="Public" Enabled="true" Target="SC_Components_Service_##GUID##" ParentMonitorID="SystemHealthLibrary!System.Health.SecurityState" Remotable="true" Priority="Normal" RelationshipType="SCIMembership_##GUID##_Components_Group" MemberMonitor="SystemHealthLibrary!System.Health.SecurityState">
+        <Category>SecurityHealth</Category>
+        <Algorithm>WorstOf</Algorithm>
+      </DependencyMonitor>
+      <DependencyMonitor ID="SCIMembership_##GUID##_Components_To_Service_Availability_HealthMonitor" Accessibility="Public" Enabled="true" Target="Service_##GUID##" ParentMonitorID="SystemHealthLibrary!System.Health.AvailabilityState" Remotable="true" Priority="Normal" RelationshipType="SCIMembership_##GUID##_Components_To_Service" MemberMonitor="SystemHealthLibrary!System.Health.AvailabilityState">
+        <Category>AvailabilityHealth</Category>
+        <Algorithm>WorstOf</Algorithm>
+      </DependencyMonitor>
+      <DependencyMonitor ID="SCIMembership_##GUID##_Infrastructure_Group_Availability_HealthMonitor" Accessibility="Public" Enabled="true" Target="SC_Infrastructure_Service_##GUID##" ParentMonitorID="SystemHealthLibrary!System.Health.AvailabilityState" Remotable="true" Priority="Normal" RelationshipType="SCIMembership_##GUID##_Infrastructure_Group" MemberMonitor="SystemHealthLibrary!System.Health.AvailabilityState">
+        <Category>AvailabilityHealth</Category>
+        <Algorithm>WorstOf</Algorithm>
+      </DependencyMonitor>
+      <DependencyMonitor ID="SCIMembership_##GUID##_Infrastructure_Group_Performance_HealthMonitor" Accessibility="Public" Enabled="true" Target="SC_Infrastructure_Service_##GUID##" ParentMonitorID="SystemHealthLibrary!System.Health.PerformanceState" Remotable="true" Priority="Normal" RelationshipType="SCIMembership_##GUID##_Infrastructure_Group" MemberMonitor="SystemHealthLibrary!System.Health.PerformanceState">
+        <Category>PerformanceHealth</Category>
+        <Algorithm>WorstOf</Algorithm>
+      </DependencyMonitor>
+      <DependencyMonitor ID="SCIMembership_##GUID##_Infrastructure_Group_Configuration_HealthMonitor" Accessibility="Public" Enabled="true" Target="SC_Infrastructure_Service_##GUID##" ParentMonitorID="SystemHealthLibrary!System.Health.ConfigurationState" Remotable="true" Priority="Normal" RelationshipType="SCIMembership_##GUID##_Infrastructure_Group" MemberMonitor="SystemHealthLibrary!System.Health.ConfigurationState">
+        <Category>ConfigurationHealth</Category>
+        <Algorithm>WorstOf</Algorithm>
+      </DependencyMonitor>
+      <DependencyMonitor ID="SCIMembership_##GUID##_Infrastructure_Group_Security_HealthMonitor" Accessibility="Public" Enabled="true" Target="SC_Infrastructure_Service_##GUID##" ParentMonitorID="SystemHealthLibrary!System.Health.SecurityState" Remotable="true" Priority="Normal" RelationshipType="SCIMembership_##GUID##_Infrastructure_Group" MemberMonitor="SystemHealthLibrary!System.Health.SecurityState">
+        <Category>SecurityHealth</Category>
+        <Algorithm>WorstOf</Algorithm>
+      </DependencyMonitor>
+      <DependencyMonitor ID="SCIMembership_##GUID##_Infrastructure_To_Service_Availability_HealthMonitor" Accessibility="Public" Enabled="true" Target="Service_##GUID##" ParentMonitorID="SystemHealthLibrary!System.Health.AvailabilityState" Remotable="true" Priority="Normal" RelationshipType="SCIMembership_##GUID##_Infrastructure_To_Service" MemberMonitor="SystemHealthLibrary!System.Health.AvailabilityState">
+        <Category>AvailabilityHealth</Category>
+        <Algorithm>WorstOf</Algorithm>
+      </DependencyMonitor>
+    </Monitors>
+    <ServiceLevelObjectives>
+      <MonitorSLO ID="Service_##GUID##.SLO" ConfigurationGroupId="Service_##GUID##.SLA" Target="Service_##GUID##">
+        <MonitorId>SystemHealthLibrary!System.Health.AvailabilityState</MonitorId>
+        <Goal>99</Goal>
+      </MonitorSLO>
+    </ServiceLevelObjectives>
+  </Monitoring>
+  <ConfigurationGroups>
+    <ConfigurationGroup ID="Service_##GUID##.SLA" Accessibility="Public" Target="Service_##GUID##" />
+  </ConfigurationGroups>
+  <Presentation>
+    <ImageReferences>
+      <ImageReference ElementID="SC_Functional_Service_##GUID##" ImageID="Image!GenericBaseEntity16" />
+      <ImageReference ElementID="SC_Functional_Service_##GUID##" ImageID="Image!GenericBaseEntity80" />
+      <ImageReference ElementID="SC_Components_Service_##GUID##" ImageID="Image!GenericBaseEntity16" />
+      <ImageReference ElementID="SC_Components_Service_##GUID##" ImageID="Image!GenericBaseEntity80" />
+      <ImageReference ElementID="SC_Infrastructure_Service_##GUID##" ImageID="Image!GenericBaseEntity16" />
+      <ImageReference ElementID="SC_Infrastructure_Service_##GUID##" ImageID="Image!GenericBaseEntity80" />
+    </ImageReferences>
+  </Presentation>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="##XMLID##">
+          <Name>##XMLNAME##</Name>
+          <Description>This management pack holds all monitoring and components for ##XMLNAME##.</Description>
+        </DisplayString>
+        <DisplayString ElementID="Service_##GUID##">
+          <Name>##ServiceName##</Name>
+        </DisplayString>
+        <DisplayString ElementID="Service_##GUID##_Functional.Group">
+          <Name>##ServiceName## | Functional Group</Name>
+	  <Description>Group that include functional objects that is included for monitoring of this service. For example TCP Port Checks, SQL Qyery probes, Availability/Transaction Monitoring.</Description>
+        </DisplayString>
+        <DisplayString ElementID="Service_##GUID##_Functional.Group.DiscoveryRule">
+          <Name>Populate ##ServiceName## | Functional</Name>
+          <Description>This discovery rule populates the group '##ServiceName## | Functional'</Description>
+        </DisplayString>
+        <DisplayString ElementID="Service_##GUID##_Components.Group">
+          <Name>##ServiceName## | Components Group</Name>
+	  <Description>Group that include component objects that is included for monitoring of this service. For example SQL Engines, SQL Databases, IIS Web Sites, Windows Services...</Description>
+        </DisplayString>
+        <DisplayString ElementID="Service_##GUID##_Components.Group.DiscoveryRule">
+          <Name>Populate ##ServiceName## | Components</Name>
+          <Description>This discovery rule populates the group '##ServiceName## | Components'</Description>
+        </DisplayString>
+        <DisplayString ElementID="Service_##GUID##_Infrastructure.Group">
+          <Name>##ServiceName## | Infrastructure Group</Name>
+	  <Description>Group that include infrastructure objects that is included for monitoring of this service. For example Windows OS servers and ICMP/SNMP devices.</Description>
+        </DisplayString>
+        <DisplayString ElementID="Service_##GUID##_Infrastructure.Group.DiscoveryRule">
+          <Name>Populate ##ServiceName## | Infrastructure</Name>
+          <Description>This discovery rule populates the group '##ServiceName## | Infrastructure'</Description>
+        </DisplayString>
+        <DisplayString ElementID="Service_##GUID##.SLA">
+          <Name>##ServiceName## | SLT</Name>
+        </DisplayString>
+        <DisplayString ElementID="Service_##GUID##.SLO">
+          <Name>##ServiceName## | SLO</Name>
+        </DisplayString>
+        <DisplayString ElementID="Service_##GUID##_Functional.DependencyMonitor">
+          <Name>##ServiceName## | Functional Group Rollup Monitor</Name>
+        </DisplayString>
+        <DisplayString ElementID="Service_##GUID##_Components.DependencyMonitor">
+          <Name>##ServiceName## | Components Group Rollup Monitor</Name>
+        </DisplayString>
+        <DisplayString ElementID="Service_##GUID##_Infrastructure.DependencyMonitor">
+          <Name>##ServiceName## | Infrastructure Group Rollup Monitor</Name>
+        </DisplayString>
+        <DisplayString ElementID="SC_Functional_Service_##GUID##">
+          <Name>Functional</Name>
+          <Description />
+        </DisplayString>
+        <DisplayString ElementID="SCIMembership_##GUID##_Functional_Group_Availability_HealthMonitor">
+          <Name>Component Group Health Roll-up for type Object</Name>
+          <Description>The health of this Component is determined by the health of its members. This monitor rolls up health from each of the members of this Component.</Description>
+        </DisplayString>
+        <DisplayString ElementID="SCIMembership_##GUID##_Functional_Group_Performance_HealthMonitor">
+          <Name>Component Group Health Roll-up for type Object</Name>
+          <Description>The health of this Component is determined by the health of its members. This monitor rolls up health from each of the members of this Component.</Description>
+        </DisplayString>
+        <DisplayString ElementID="SCIMembership_##GUID##_Functional_Group_Configuration_HealthMonitor">
+          <Name>Component Group Health Roll-up for type Object</Name>
+          <Description>The health of this Component is determined by the health of its members. This monitor rolls up health from each of the members of this Component.</Description>
+        </DisplayString>
+        <DisplayString ElementID="SCIMembership_##GUID##_Functional_Group_Security_HealthMonitor">
+          <Name>Component Group Health Roll-up for type Object</Name>
+          <Description>The health of this Component is determined by the health of its members. This monitor rolls up health from each of the members of this Component.</Description>
+        </DisplayString>
+        <DisplayString ElementID="SCIMembership_##GUID##_Functional_To_Service_Availability_HealthMonitor">
+          <Name>Service Health Roll-up for component Functional</Name>
+          <Description>The health of this service is determined by the health of its components. This monitor rolls up health from a particular component to the serivce.</Description>
+        </DisplayString>
+        <DisplayString ElementID="SC_Components_Service_##GUID##">
+          <Name>Components</Name>
+          <Description />
+        </DisplayString>
+        <DisplayString ElementID="SCIMembership_##GUID##_Components_Group_Availability_HealthMonitor">
+          <Name>Component Group Health Roll-up for type Object</Name>
+          <Description>The health of this Component is determined by the health of its members. This monitor rolls up health from each of the members of this Component.</Description>
+        </DisplayString>
+        <DisplayString ElementID="SCIMembership_##GUID##_Components_Group_Performance_HealthMonitor">
+          <Name>Component Group Health Roll-up for type Object</Name>
+          <Description>The health of this Component is determined by the health of its members. This monitor rolls up health from each of the members of this Component.</Description>
+        </DisplayString>
+        <DisplayString ElementID="SCIMembership_##GUID##_Components_Group_Configuration_HealthMonitor">
+          <Name>Component Group Health Roll-up for type Object</Name>
+          <Description>The health of this Component is determined by the health of its members. This monitor rolls up health from each of the members of this Component.</Description>
+        </DisplayString>
+        <DisplayString ElementID="SCIMembership_##GUID##_Components_Group_Security_HealthMonitor">
+          <Name>Component Group Health Roll-up for type Object</Name>
+          <Description>The health of this Component is determined by the health of its members. This monitor rolls up health from each of the members of this Component.</Description>
+        </DisplayString>
+        <DisplayString ElementID="SCIMembership_##GUID##_Components_To_Service_Availability_HealthMonitor">
+          <Name>Service Health Roll-up for component Components</Name>
+          <Description>The health of this service is determined by the health of its components. This monitor rolls up health from a particular component to the serivce.</Description>
+        </DisplayString>
+        <DisplayString ElementID="SC_Infrastructure_Service_##GUID##">
+          <Name>Infrastructure</Name>
+          <Description />
+        </DisplayString>
+        <DisplayString ElementID="SCIMembership_##GUID##_Infrastructure_Group_Availability_HealthMonitor">
+          <Name>Component Group Health Roll-up for type Object</Name>
+          <Description>The health of this Component is determined by the health of its members. This monitor rolls up health from each of the members of this Component.</Description>
+        </DisplayString>
+        <DisplayString ElementID="SCIMembership_##GUID##_Infrastructure_Group_Performance_HealthMonitor">
+          <Name>Component Group Health Roll-up for type Object</Name>
+          <Description>The health of this Component is determined by the health of its members. This monitor rolls up health from each of the members of this Component.</Description>
+        </DisplayString>
+        <DisplayString ElementID="SCIMembership_##GUID##_Infrastructure_Group_Configuration_HealthMonitor">
+          <Name>Component Group Health Roll-up for type Object</Name>
+          <Description>The health of this Component is determined by the health of its members. This monitor rolls up health from each of the members of this Component.</Description>
+        </DisplayString>
+        <DisplayString ElementID="SCIMembership_##GUID##_Infrastructure_Group_Security_HealthMonitor">
+          <Name>Component Group Health Roll-up for type Object</Name>
+          <Description>The health of this Component is determined by the health of its members. This monitor rolls up health from each of the members of this Component.</Description>
+        </DisplayString>
+        <DisplayString ElementID="SCIMembership_##GUID##_Infrastructure_To_Service_Availability_HealthMonitor">
+          <Name>Service Health Roll-up for component Infrastructure</Name>
+          <Description>The health of this service is determined by the health of its components. This monitor rolls up health from a particular component to the serivce.</Description>
+        </DisplayString>
+        <DisplayString ElementID="Service_##GUID##_SCPopulation">
+          <Name>Distributed Application Membership Discovery</Name>
+          <Description>This discovery will find which Components are members of this Distributed Application.</Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPack>
